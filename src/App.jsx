@@ -526,7 +526,23 @@ export default function App() {
   const [selectedType, setSelectedType] = useState(0);
   const [brandName, setBrandName] = useState('');
   const [projectDetails, setProjectDetails] = useState('');
+  const scrollToSection = (id) => {
+    setMobileMenuOpen(false);
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        const offset = 80;
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        const elementRect = element.getBoundingClientRect().top;
+        const offsetPosition = Math.max(0, elementRect + currentScroll - offset);
 
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 150);
+  };
   const handleSendQuote = (e) => {
     e.preventDefault();
     const chosenService = t.quote.types[selectedType];
@@ -563,19 +579,27 @@ export default function App() {
       />
 
       {/* ================= NAVBAR ================= */}
+      {/* ================= NAVBAR ================= */}
       <header className="sticky top-0 z-50 border-b border-white/10 bg-[#07070b]/85 backdrop-blur-xl">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-8">
-          <a href="#" className="focus:outline-none">
+          <button
+            type="button"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="focus:outline-none cursor-pointer"
+          >
             <AdurixLogo />
-          </a>
+          </button>
 
           {/* Links Desktop */}
           <nav className="hidden lg:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-zinc-400">
-            <a href="#work" className="hover:text-white transition-colors">{t.nav.work}</a>
-            <a href="#services" className="hover:text-white transition-colors">{t.nav.services}</a>
-            <a href="#experience" className="hover:text-white transition-colors">{t.nav.experience}</a>
-            <a href="#reviews" className="hover:text-white transition-colors">{t.nav.reviews}</a>
-            <a href="#quote" className="hover:text-emerald-400 transition-colors">{t.nav.quote}</a>
+            <button type="button" onClick={() => scrollToSection('work')} className="hover:text-white transition-colors cursor-pointer uppercase">{t.nav.work}</button>
+            <button type="button" onClick={() => scrollToSection('services')} className="hover:text-white transition-colors cursor-pointer uppercase">{t.nav.services}</button>
+            <button type="button" onClick={() => scrollToSection('experience')} className="hover:text-white transition-colors cursor-pointer uppercase">{t.nav.experience}</button>
+            <button type="button" onClick={() => scrollToSection('reviews')} className="hover:text-white transition-colors cursor-pointer uppercase">{t.nav.reviews}</button>
+            <button type="button" onClick={() => scrollToSection('quote')} className="hover:text-emerald-400 transition-colors cursor-pointer uppercase">{t.nav.quote}</button>
           </nav>
 
           {/* Selector de Idioma ES / EN + CTA */}
@@ -601,13 +625,14 @@ export default function App() {
               </button>
             </div>
 
-            <a
-              href="#quote"
-              className="hidden sm:inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-xs font-extrabold uppercase tracking-wider text-black hover:bg-emerald-400 transition-all shadow-[0_0_25px_rgba(255,255,255,0.15)]"
+            <button
+              type="button"
+              onClick={() => scrollToSection('quote')}
+              className="hidden sm:inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-xs font-extrabold uppercase tracking-wider text-black hover:bg-emerald-400 transition-all shadow-[0_0_25px_rgba(255,255,255,0.15)] cursor-pointer"
             >
               <span>{t.nav.cta}</span>
               <ArrowUpRight className="size-4 stroke-[2.5]" />
-            </a>
+            </button>
 
             <button
               type="button"
@@ -624,20 +649,20 @@ export default function App() {
         {mobileMenuOpen && (
           <div className="lg:hidden border-t border-white/10 bg-[#0b0b12] px-6 py-5 space-y-3 text-left">
             {[
-              { href: '#work', label: t.nav.work },
-              { href: '#services', label: t.nav.services },
-              { href: '#experience', label: t.nav.experience },
-              { href: '#reviews', label: t.nav.reviews },
-              { href: '#quote', label: t.nav.quote }
+              { id: 'work', label: t.nav.work },
+              { id: 'services', label: t.nav.services },
+              { id: 'experience', label: t.nav.experience },
+              { id: 'reviews', label: t.nav.reviews },
+              { id: 'quote', label: t.nav.quote }
             ].map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block py-2 text-sm font-bold uppercase tracking-wider text-zinc-200 hover:text-emerald-400 border-b border-white/5"
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => scrollToSection(item.id)}
+                className="block w-full text-left py-2.5 text-sm font-bold uppercase tracking-wider text-zinc-200 hover:text-emerald-400 border-b border-white/5 cursor-pointer"
               >
                 {item.label}
-              </a>
+              </button>
             ))}
           </div>
         )}
