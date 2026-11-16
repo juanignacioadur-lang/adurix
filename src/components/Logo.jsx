@@ -1,0 +1,48 @@
+/**
+ * ADURIX identity.
+ *
+ * Isotipo: the Λ of the A sits in front; a rising stroke passes behind its right
+ * leg and, crossing it, draws the X — the first and last letters of the name.
+ * Geometry (100-unit cap height): run 52, stroke 22, gap 5.
+ *
+ * Wordmark: "adurix" set in Archivo Expanded Bold (Omnibus-Type), converted to
+ * outlines so it never depends on a font loading. Standalone files live in
+ * /public/brand.
+ *
+ * Colors follow the context: the Λ and the wordmark use `currentColor`, the
+ * rising stroke uses `--logo-accent` (blue by default).
+ */
+
+const LAMBDA = '0,100 52,0 74,0 126,100 104,100 63,21.15 22,100';
+const RISE_LOW = '52,100 74,100 86.5,75.96 75.5,54.81';
+const RISE_UP = '104,0 126,0 102.5,45.19 91.5,24.04';
+
+const WORDMARK =
+  'M270 12Q222 12 181 5Q140 -3 109 -20Q78 -38 61 -68Q43 -98 43 -144Q43 -207 78 -243Q112 -280 176 -296Q240 -313 326 -317Q411 -321 512 -321L512 -340Q512 -373 496 -392Q480 -411 448 -419Q415 -428 364 -428Q324 -428 292 -422Q259 -417 240 -405Q221 -394 221 -376L221 -365L64 -365Q63 -369 63 -373Q62 -377 62 -382Q62 -429 97 -464Q132 -499 202 -519Q271 -539 374 -539Q470 -539 536 -522Q601 -505 635 -466Q669 -427 669 -362L669 -141Q669 -123 677 -113Q684 -103 702 -103L754 -103L754 -6Q743 -1 715 6Q686 12 652 12Q606 12 580 1Q553 -10 541 -28Q529 -46 524 -68L516 -68Q488 -43 450 -25Q411 -7 366 3Q320 12 270 12ZM311 -99Q340 -99 374 -105Q408 -112 440 -124Q471 -137 492 -156Q512 -176 512 -201L512 -230Q405 -230 336 -222Q267 -214 233 -197Q199 -180 199 -149Q199 -128 216 -117Q232 -107 258 -103Q284 -99 311 -99Z M1043 12Q962 12 901 -18Q840 -48 806 -109Q771 -171 771 -263Q771 -358 806 -419Q840 -480 899 -509Q958 -539 1037 -539Q1076 -539 1114 -530Q1151 -522 1182 -505Q1212 -488 1234 -462L1242 -462L1242 -724L1399 -724L1399 0L1272 0L1259 -83L1251 -83Q1213 -30 1160 -9Q1107 12 1043 12ZM1087 -113Q1136 -113 1171 -130Q1206 -147 1225 -180Q1243 -214 1243 -259L1243 -267Q1243 -302 1233 -329Q1222 -357 1202 -375Q1181 -394 1152 -404Q1122 -414 1085 -414Q1036 -414 1002 -396Q967 -379 949 -347Q930 -316 930 -272L930 -256Q930 -211 949 -179Q968 -147 1003 -130Q1037 -113 1087 -113Z M1728 12Q1616 12 1559 -41Q1502 -95 1502 -204L1502 -527L1659 -527L1659 -229Q1659 -197 1668 -175Q1676 -153 1693 -139Q1709 -125 1733 -119Q1756 -113 1785 -113Q1827 -113 1863 -130Q1899 -147 1921 -178Q1943 -209 1943 -250L1943 -527L2100 -527L2100 0L1974 0L1963 -89L1954 -89Q1925 -51 1888 -29Q1851 -7 1810 3Q1769 12 1728 12Z M2208 0L2208 -527L2334 -527L2345 -436L2354 -436Q2366 -465 2389 -488Q2411 -512 2443 -526Q2474 -540 2511 -540Q2530 -540 2548 -537Q2566 -534 2581 -529L2581 -398L2504 -398Q2466 -398 2440 -385Q2414 -373 2397 -351Q2380 -329 2373 -303Q2365 -277 2365 -248L2365 0Z M2633 -608L2633 -724L2790 -724L2790 -608ZM2633 0L2633 -527L2790 -527L2790 0Z M2839 0L3091 -275L2855 -527L3055 -527L3201 -367L3207 -367L3351 -527L3539 -527L3303 -272L3553 0L3355 0L3193 -180L3187 -180L3027 0Z';
+
+const ACCENT = 'var(--logo-accent, var(--color-blue))';
+
+/** The isotipo on its own (viewBox 126 × 100). */
+export function Mark({ className = '', title }) {
+  return (
+    <svg viewBox="0 0 126 100" className={className} role={title ? 'img' : undefined} aria-label={title} aria-hidden={title ? undefined : 'true'}>
+      <polygon fill={ACCENT} points={RISE_LOW} />
+      <polygon fill={ACCENT} points={RISE_UP} />
+      <polygon fill="currentColor" points={LAMBDA} />
+    </svg>
+  );
+}
+
+/** Isotipo + wordmark. The mark is as tall as the ascender of the "d". */
+export function Logo({ className = '', title = 'ADURIX' }) {
+  return (
+    <svg viewBox="0 0 4639 736" className={className} role="img" aria-label={title}>
+      <g transform="scale(7.24)">
+        <polygon fill={ACCENT} points={RISE_LOW} />
+        <polygon fill={ACCENT} points={RISE_UP} />
+        <polygon fill="currentColor" points={LAMBDA} />
+      </g>
+      <path fill="currentColor" transform="translate(1086 724)" d={WORDMARK} />
+    </svg>
+  );
+}
