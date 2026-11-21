@@ -33,8 +33,8 @@ const shots = (id) => ({
 // Language-independent data for each case study, keyed by the id used in the copy.
 export const PROJECTS = {
   santos: {
-    url: 'https://santos-web.pages.dev',
-    domain: 'santos-web.pages.dev',
+    url: 'https://santosfood.club',
+    domain: 'santosfood.club',
     stage: '#f5b82e',
     stageInk: '#0c0c0d',
     scrollRatio: 1440 / 2700,
