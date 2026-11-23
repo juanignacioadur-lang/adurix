@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { CONTENT, LANGS } from './content/site.js';
 import { Contact } from './components/Contact.jsx';
+import { Faq } from './components/Faq.jsx';
+import { FloatingCta } from './components/FloatingCta.jsx';
 import { Footer } from './components/Footer.jsx';
 import { Header } from './components/Header.jsx';
 import { Hero } from './components/Hero.jsx';
@@ -47,9 +49,11 @@ export default function App() {
         <Work t={t} />
         <Services t={t} />
         <Studio t={t} />
+        <Faq t={t} />
         <Contact t={t} />
       </main>
       <Footer t={t} />
+      <FloatingCta t={t} />
     </>
   );
 }

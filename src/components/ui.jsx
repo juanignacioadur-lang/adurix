@@ -30,17 +30,6 @@ export function Lines({ as: Tag = 'h2', lines, className = '', delay = 0, stagge
   );
 }
 
-/** Colours the closing full stop of a headline line — the one accent in the type. */
-export function withDot(line, className = 'text-blue') {
-  if (typeof line !== 'string' || !line.endsWith('.')) return line;
-  return (
-    <>
-      {line.slice(0, -1)}
-      <span className={className}>.</span>
-    </>
-  );
-}
-
 const ArrowPath = () => <path d="M4.25 11.75 11.5 4.5M5.5 4.25h6.25v6.25" />;
 
 export function ArrowUpRight({ className = '' }) {

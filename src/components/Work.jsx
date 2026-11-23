@@ -12,7 +12,15 @@ function CaseStudy({ c, index, t }) {
     <article id={`case-${c.id}`} className="border-t border-ink/15 pb-24 pt-5 lg:pb-36 lg:pt-6">
       <header className="grid grid-cols-12 items-baseline gap-x-6 gap-y-2">
         <span className="t-label t-num col-span-12 text-mute lg:col-span-1">0{index + 1}</span>
-        <h3 className="t-title col-span-12 text-[clamp(1.875rem,3.8vw,3.375rem)] lg:col-span-6">{c.name}</h3>
+        <h3 className="t-title col-span-12 flex flex-wrap items-center gap-x-4 gap-y-2 text-[clamp(1.875rem,3.8vw,3.375rem)] lg:col-span-6">
+          {c.name}
+          {project.isNew && (
+            <span className="t-label inline-flex items-center gap-2 rounded-full bg-blue px-3 py-1.5 text-white">
+              <span className="live-dot size-1.5" aria-hidden="true" />
+              {w.newLabel}
+            </span>
+          )}
+        </h3>
         <p className="t-label col-span-12 text-mute lg:col-span-5 lg:text-right">
           {c.sector} <span aria-hidden="true">—</span> {c.kind}
         </p>
@@ -74,6 +82,7 @@ function CaseStudy({ c, index, t }) {
         </Reveal>
       </div>
 
+      {c.quote && (
       <Reveal as="figure" className="mt-14 grid gap-x-6 gap-y-5 border-t border-ink/15 pt-6 lg:mt-20 lg:grid-cols-12">
         <figcaption className="t-label text-mute lg:col-span-4">
           <span className="block text-ink">{c.quote.who}</span>
@@ -90,6 +99,7 @@ function CaseStudy({ c, index, t }) {
           <span aria-hidden="true">”</span>
         </blockquote>
       </Reveal>
+      )}
     </article>
   );
 }

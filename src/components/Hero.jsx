@@ -2,7 +2,8 @@ import { HERO_PHONES, PROJECTS, TIME_ZONE } from '../content/site.js';
 import { useClock, useMounted } from '../lib/hooks.js';
 import { Phone } from './Devices.jsx';
 import { Mark } from './Logo.jsx';
-import { ArrowDown, Lines, Swap, withDot } from './ui.jsx';
+import { withDot } from '../lib/typography.jsx';
+import { ArrowDown, Lines, Swap } from './ui.jsx';
 
 // Measured width of the headline per language, in em. `base` fits the longest line to the
 // viewport; `xl` also keeps the second line clear of the intro that sits beside it.
@@ -10,10 +11,12 @@ const FIT = {
   es: { '--fit-base': 7.62, '--fit-xl': 9.4 },
   en: { '--fit-base': 8.7, '--fit-xl': 8.75 },
 };
-const PAN = [
-  { '--pan': '54s', '--pan-delay': '1.4s' },
-  { '--pan': '46s', '--pan-delay': '0.6s' },
-  { '--pan': '50s', '--pan-delay': '2.2s' },
+// One entry per phone on the stage: scroll speed, entrance delay and vertical offset.
+const PHONES = [
+  { pan: { '--pan': '54s', '--pan-delay': '1.4s' }, delay: 140, offset: 'mt-12 md:mt-16' },
+  { pan: { '--pan': '46s', '--pan-delay': '0.6s' }, delay: 0, offset: '' },
+  { pan: { '--pan': '50s', '--pan-delay': '2.2s' }, delay: 220, offset: 'mt-12 md:mt-9' },
+  { pan: { '--pan': '58s', '--pan-delay': '1s' }, delay: 320, offset: 'md:mt-24 max-md:hidden' },
 ];
 
 export function Hero({ t, lang }) {
@@ -65,7 +68,7 @@ export function Hero({ t, lang }) {
         </div>
       </div>
 
-      {/* Stage: the three live products, scrolling on their own. */}
+      {/* Stage: the live products, scrolling on their own. */}
       <div className="on-blue relative mt-14 overflow-hidden bg-blue text-white lg:mt-20">
         <Mark className="pointer-events-none absolute -right-[4%] top-[8%] h-[135%] text-white/[0.06] [--logo-accent:rgb(255_255_255/0.06)] max-md:hidden" />
         <div className="wrap relative">
@@ -77,29 +80,30 @@ export function Hero({ t, lang }) {
             </a>
           </div>
 
-          <div className="flex h-[clamp(23rem,43vw,36rem)] items-start justify-center gap-[clamp(1.125rem,4.6vw,5.5rem)] pt-9 lg:pt-11">
+          <div className="flex h-[clamp(23rem,43vw,36rem)] items-start justify-center gap-[1.125rem] pt-9 md:gap-[clamp(1rem,3.6vw,4.5rem)] lg:pt-11">
             {HERO_PHONES.map((id, i) => {
               const c = cases[id];
+              const p = PHONES[i];
               return (
                 <a
                   key={id}
                   href={`#case-${id}`}
                   aria-label={`${c.name} — ${c.kind}`}
-                  className={`reveal ${on} block flex-none ${i === 1 ? '' : 'mt-12 lg:mt-20'}`}
-                  style={{ '--d': `${560 + [140, 0, 280][i]}ms` }}
+                  className={`reveal ${on} block flex-none ${p.offset}`}
+                  style={{ '--d': `${560 + p.delay}ms` }}
                 >
-                  <p className="t-label mb-3 flex items-center justify-between gap-3 text-white/85 max-md:hidden">
+                  {/* w-0 + min-w-full: the label takes the phone's width instead of widening the column. */}
+                  <p className="t-label mb-3 flex w-0 min-w-full items-center justify-between gap-3 text-white/85 max-md:hidden">
                     <span className="truncate">
                       <span className="t-num text-white/70">0{c.n}</span> {c.name}
                     </span>
-                    <ArrowDown className="size-3 flex-none" />
+                    {PROJECTS[id].isNew ? (
+                      <span className="flex-none rounded-full bg-white px-2 py-0.5 text-[0.625rem] text-blue">{t.work.newLabel}</span>
+                    ) : (
+                      <ArrowDown className="size-3 flex-none" />
+                    )}
                   </p>
-                  <Phone
-                    shot={PROJECTS[id].shots.phoneScroll}
-                    pan
-                    eager={i === 1}
-                    style={{ '--pw': 'clamp(12.5rem, 20.5vw, 18.5rem)', ...PAN[i] }}
-                  />
+                  <Phone shot={PROJECTS[id].shots.phoneScroll} pan eager={i === 1} className="hero-phone" style={p.pan} />
                 </a>
               );
             })}

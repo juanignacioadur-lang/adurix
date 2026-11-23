@@ -3,15 +3,12 @@ import { useEffect, useRef, useState } from 'react';
 /** True once the element has entered the viewport (fires once). */
 export function useInView({ rootMargin = '0px 0px -10% 0px', threshold = 0.08 } = {}) {
   const ref = useRef(null);
-  const [inView, setInView] = useState(false);
+  // Without IntersectionObserver (very old browsers) everything is simply shown.
+  const [inView, setInView] = useState(() => typeof IntersectionObserver === 'undefined');
 
   useEffect(() => {
     const el = ref.current;
     if (!el || inView) return;
-    if (typeof IntersectionObserver === 'undefined') {
-      setInView(true);
-      return;
-    }
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

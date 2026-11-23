@@ -125,11 +125,11 @@ export function Header({ t, lang, setLang }) {
         </nav>
         <div className="wrap flex flex-col gap-5 pb-8 pt-6">
           <div className="flex flex-col gap-3 sm:flex-row">
-            <a href="#contact" onClick={() => setOpen(false)} className="btn btn-ink flex-1">
+            <a href="#contact" onClick={() => setOpen(false)} className="btn btn-ink sm:flex-1">
               {t.nav.cta}
               <Swap />
             </a>
-            <a href={waLink(t.contact.quick(t.contact.general))} target="_blank" rel="noopener noreferrer" className="btn btn-line flex-1">
+            <a href={waLink(t.contact.quick(t.contact.general))} target="_blank" rel="noopener noreferrer" className="btn btn-line sm:flex-1">
               <WhatsAppIcon className="size-[1.125rem]" />
               WhatsApp
             </a>

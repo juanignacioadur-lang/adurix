@@ -32,11 +32,20 @@ const shots = (id) => ({
 
 // Language-independent data for each case study, keyed by the id used in the copy.
 export const PROJECTS = {
+  blackburger: {
+    url: 'https://blackburgervcp.com',
+    domain: 'blackburgervcp.com',
+    stage: '#ffc21a',
+    stageInk: '#0c0c0d',
+    scrollRatio: 1440 / 3000,
+    shots: shots('blackburger'),
+    isNew: true,
+  },
   santos: {
     url: 'https://santosfood.club',
     domain: 'santosfood.club',
-    stage: '#f5b82e',
-    stageInk: '#0c0c0d',
+    stage: '#083821',
+    stageInk: '#ffffff',
     scrollRatio: 1440 / 2700,
     shots: shots('santos'),
   },
@@ -58,5 +67,6 @@ export const PROJECTS = {
   },
 };
 
-// Order of the phones on the hero stage (the bright one sits in the middle).
-export const HERO_PHONES = ['cosquin', 'santos', 'xbox'];
+// Order of the phones on the hero stage. Below md only the first three are shown,
+// so the newest project sits in the middle on phones.
+export const HERO_PHONES = ['santos', 'blackburger', 'cosquin', 'xbox'];

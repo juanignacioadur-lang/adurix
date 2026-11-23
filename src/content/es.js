@@ -27,7 +27,7 @@ export const es = {
     lede: 'Diseñamos y programamos tiendas online, sistemas de pedidos para gastronomía y software a medida. Sin plantillas, sin comisiones por venta y con un panel para que lo manejes vos.',
     ctaPrimary: 'Empezar un proyecto',
     ctaSecondary: 'Ver trabajos',
-    stageNote: 'Tres productos reales, en producción.',
+    stageNote: 'Cuatro productos reales, en producción.',
     stageHint: 'Ver los casos',
   },
   work: {
@@ -39,7 +39,25 @@ export const es = {
     visit: 'Ver sitio en vivo',
     open: 'Abrir',
     hover: 'Pasá el cursor para recorrer el sitio',
+    newLabel: 'Nuevo',
     cases: [
+      {
+        id: 'blackburger',
+        name: 'Black Burger',
+        sector: 'Gastronomía',
+        kind: 'Carta digital y pedidos online + panel del local',
+        summary:
+          'Carta digital y sistema de pedidos para una hamburguesería de Villa Carlos Paz. Burgers, lomos, pizzas y empanadas se piden online en pocos toques, y el pedido llega listo al WhatsApp de la cocina.',
+        built: [
+          'Carta con buscador y navegación por categorías',
+          'Variantes por plato: simple o doble, porciones, carne o pollo',
+          'Docenas de empanadas con gustos a elección',
+          'Envío por zonas con costo y demora, o retiro en el local',
+          'Transferencia, efectivo o Mercado Pago, configurables',
+          'Horarios por día con estado abierto o cerrado en vivo',
+        ],
+        stack: ['React', 'Supabase', 'Tailwind CSS', 'WhatsApp API', 'Cloudflare'],
+      },
       {
         id: 'santos',
         name: 'Santos Food Club',
@@ -228,6 +246,37 @@ export const es = {
       ],
     },
   },
+  faq: {
+    label: 'Preguntas frecuentes',
+    title: 'Lo que siempre nos preguntan.',
+    items: [
+      {
+        q: '¿Cuánto cuesta una web?',
+        a: 'Depende de lo que necesites: no es lo mismo una landing que un sistema de pedidos con panel y base de datos. Contanos tu proyecto por WhatsApp y te respondemos con una propuesta a medida.',
+      },
+      {
+        q: '¿Cobran comisión por cada venta?',
+        a: 'No. Los pagos van directo a tu cuenta bancaria o a Mercado Pago, y no cobramos comisión por venta.',
+      },
+      {
+        q: '¿Puedo cambiar precios y productos yo mismo?',
+        a: 'Sí. Los sistemas de pedidos y las tiendas incluyen un panel para pausar stock, cambiar precios y ordenar secciones, también desde el celular.',
+      },
+      {
+        q: '¿La web queda con mi propio dominio?',
+        a: 'Sí. La publicamos con tu dominio (.com o .com.ar) y certificado SSL.',
+      },
+      {
+        q: '¿Se ve bien en celulares?',
+        a: 'Sí. Diseñamos mobile-first: cada proyecto se adapta a iPhone, Android y desktop.',
+      },
+      {
+        q: '¿Trabajan con clientes fuera de Córdoba?',
+        a: 'Sí. Trabajamos con clientes de Argentina y del exterior, en español o en inglés.',
+      },
+    ],
+  },
+  float: 'Escribinos por WhatsApp',
   contact: {
     label: 'Contacto',
     title: ['Contanos', 'tu proyecto.'],

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { waLink } from '../content/site.js';
-import { Lines, Reveal, Swap, withDot } from './ui.jsx';
+import { withDot } from '../lib/typography.jsx';
+import { Lines, Reveal, Swap } from './ui.jsx';
 
 export function Services({ t }) {
   const s = t.services;

@@ -3,15 +3,17 @@ import { useClock } from '../lib/hooks.js';
 import { Logo } from './Logo.jsx';
 import { ArrowUpRight, Reveal, Swap } from './ui.jsx';
 
+const YEAR = new Date().getFullYear();
+
 export function Footer({ t }) {
   const f = t.footer;
   const time = useClock(TIME_ZONE);
-  const year = new Date().getFullYear();
 
   const links = [
     ['work', t.nav.work],
     ['services', t.nav.services],
     ['studio', t.nav.studio],
+    ['faq', t.faq.label],
     ['contact', t.nav.contact],
   ];
 
@@ -76,7 +78,7 @@ export function Footer({ t }) {
 
         <div className="t-label mt-10 flex flex-col gap-3 border-t border-paper/15 pt-6 text-paper/60 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
           <span>
-            © {year} ADURIX · Creative Dev Studio. {f.rights}
+            © {YEAR} ADURIX · Creative Dev Studio. {f.rights}
           </span>
           <span className="lg:text-center">{f.colophon}</span>
           <a href="#top" className="link self-start text-paper lg:self-auto">

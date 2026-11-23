@@ -293,6 +293,14 @@
     width: var(--pw);
     flex: none;
   }
+  .phone.hero-phone {
+    --pw: 12.5rem;
+  }
+  @media (min-width: 48rem) {
+    .phone.hero-phone {
+      --pw: clamp(9.5rem, 17vw, 16.5rem);
+    }
+  }
   .phone-body {
     position: relative;
     aspect-ratio: 390 / 819;
@@ -489,6 +497,45 @@
     }
   }
 
+  /* Floating WhatsApp shortcut (see FloatingCta.jsx). */
+  .floating-cta {
+    opacity: 0;
+    transform: translateY(1.25rem) scale(0.9);
+    pointer-events: none;
+    transition:
+      opacity 0.4s var(--ease-swift),
+      transform 0.6s var(--ease-expo),
+      background-color 0.3s var(--ease-swift);
+  }
+  .floating-cta.is-shown {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .floating-cta-label {
+    max-width: 0;
+    padding-left: 0;
+    transition:
+      max-width 0.55s var(--ease-expo),
+      padding 0.55s var(--ease-expo);
+  }
+  @media (hover: hover) {
+    .floating-cta:hover {
+      background: var(--color-ink);
+    }
+    .floating-cta:hover .floating-cta-label,
+    .floating-cta:focus-visible .floating-cta-label {
+      max-width: 16rem;
+      padding-left: 1.5rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .floating-cta {
+      transform: none;
+      transition: opacity 0.2s linear;
+    }
+  }
+
   /* Inputs of the WhatsApp brief: big type, underline only. */
   .brief-input {
     appearance: none;
@@ -504,7 +551,7 @@
     transition: border-color 0.25s var(--ease-swift);
   }
   .brief-input::placeholder {
-    color: rgb(255 255 255 / 0.5);
+    color: rgb(255 255 255 / 0.62);
     opacity: 1;
   }
   .brief-input:hover {

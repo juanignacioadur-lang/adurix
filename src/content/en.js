@@ -27,7 +27,7 @@ export const en = {
     lede: 'We design and build online stores, restaurant ordering systems and custom software. No templates, no sales commissions, and an admin panel so you stay in control.',
     ctaPrimary: 'Start a project',
     ctaSecondary: 'See the work',
-    stageNote: 'Three real products, live in production.',
+    stageNote: 'Four real products, live in production.',
     stageHint: 'See the case studies',
   },
   work: {
@@ -39,7 +39,25 @@ export const en = {
     visit: 'Visit the live site',
     open: 'Open',
     hover: 'Hover to scroll through the site',
+    newLabel: 'New',
     cases: [
+      {
+        id: 'blackburger',
+        name: 'Black Burger',
+        sector: 'Food & beverage',
+        kind: 'Digital menu & online ordering + store panel',
+        summary:
+          'Digital menu and ordering system for a burger joint in Villa Carlos Paz. Burgers, lomos, pizzas and empanadas are ordered online in a few taps, and each order lands ready in the kitchen’s WhatsApp.',
+        built: [
+          'Searchable menu with category navigation',
+          'Per-dish options: single or double, sizes, beef or chicken',
+          'Dozens of empanadas with flavours of your choice',
+          'Delivery by zone with fee and wait time, or pickup',
+          'Bank transfer, cash or Mercado Pago, configurable',
+          'Daily opening hours with live open/closed status',
+        ],
+        stack: ['React', 'Supabase', 'Tailwind CSS', 'WhatsApp API', 'Cloudflare'],
+      },
       {
         id: 'santos',
         name: 'Santos Food Club',
@@ -228,6 +246,37 @@ export const en = {
       ],
     },
   },
+  faq: {
+    label: 'FAQ',
+    title: 'What people always ask us.',
+    items: [
+      {
+        q: 'How much does a website cost?',
+        a: 'It depends on what you need: a landing page is not the same as an ordering system with an admin panel and a database. Tell us about your project on WhatsApp and we’ll reply with a tailored proposal.',
+      },
+      {
+        q: 'Do you charge a commission on sales?',
+        a: 'No. Payments go straight to your bank account, and we charge no sales commission.',
+      },
+      {
+        q: 'Can I change prices and products myself?',
+        a: 'Yes. Ordering systems and stores include an admin panel to pause stock, update prices and organise sections, from your phone too.',
+      },
+      {
+        q: 'Will the site be on my own domain?',
+        a: 'Yes. We publish it on your own domain with an SSL certificate.',
+      },
+      {
+        q: 'Does it work well on phones?',
+        a: 'Yes. We design mobile-first: every project is built for iPhone, Android and desktop.',
+      },
+      {
+        q: 'Do you work with clients outside Argentina?',
+        a: 'Yes. We work with clients in Argentina and abroad, in Spanish or English.',
+      },
+    ],
+  },
+  float: 'Message us on WhatsApp',
   contact: {
     label: 'Contact',
     title: ['Tell us about', 'your project.'],
